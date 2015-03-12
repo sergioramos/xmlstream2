@@ -1,6 +1,6 @@
 # xmlstream2
 
-Pipable XML parser
+Pipeable XML parser
 
 Cousin of [jsonstream2](https://github.com/ramitos/jsonstream2) and inspired by [xml-stream](https://github.com/assistunion/xml-stream)
 
