@@ -8,6 +8,7 @@
       <row>
         <data desc="id">74</data>
         <data desc="name">sramos</data>
+        <data desc="summary"><![CDATA[+++ success cdata text]]></data>
       </row>
       <success>+++ success stmt1</success>
     </fetch>

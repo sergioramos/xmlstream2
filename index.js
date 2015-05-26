@@ -32,6 +32,7 @@ var XMLStream = function(opts, selector) {
   this._parser.on('text', this._onText.bind(this));
   this._parser.on('closetag', this._onCloseTag.bind(this));
   this._parser.on('opentag', this._onOpenTag.bind(this));
+  this._parser.on('cdata', this._onText.bind(this));
 };
 
 inherits(XMLStream, Duplex);
