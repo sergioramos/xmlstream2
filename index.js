@@ -33,6 +33,7 @@ var XMLStream = function(opts, selector) {
   this._parser.on('closetag', this._onCloseTag.bind(this));
   this._parser.on('opentag', this._onOpenTag.bind(this));
   this._parser.on('cdata', this._onText.bind(this));
+  this._parser.on('end', this._onEnd.bind(this));
 };
 
 inherits(XMLStream, Duplex);
@@ -46,6 +47,11 @@ XMLStream.prototype._get = function(tree, path) {
       return defaultValue;
     }
   }
+};
+
+XMLStream.prototype._onEnd = function() {
+  this._ended = true;
+  this._read();
 };
 
 XMLStream.prototype._onText = function(text) {
@@ -131,6 +137,10 @@ XMLStream.prototype._write = function(chunk, encoding, fn) {
 };
 
 XMLStream.prototype._read = function() {
+  if (this._ended && !this._holding.length) {
+    this.push(null);
+  }
+
   if (!this._holding.length) {
     this._waiting = true;
     return;
@@ -140,10 +150,6 @@ XMLStream.prototype._read = function() {
 
   if (!this.push(this._holding.shift())) {
     return this._read();
-  }
-
-  if (this._ended && !this._holding.length) {
-    this.push(null);
   }
 };
 
