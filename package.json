@@ -1,6 +1,6 @@
 {
   "name": "xmlstream2",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Pipeable XML parser",
   "keywords": [
     "xml",
